@@ -37,10 +37,12 @@
                 android:value=".ui.ArticleListActivity" />
         </activity>
 
-        <service android:name=".localdatabase.UpdaterService"
+        <service
+            android:name=".localdatabase.UpdaterService"
             android:exported="false" />
 
-        <provider android:name=".localdatabase.ItemsProvider"
+        <provider
+            android:name=".localdatabase.ItemsProvider"
             android:authorities="com.example.xyzreader"
             android:exported="false" />
     </application>

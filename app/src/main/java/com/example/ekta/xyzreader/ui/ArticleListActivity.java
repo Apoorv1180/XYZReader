@@ -68,7 +68,6 @@ public class ArticleListActivity extends AppCompatActivity implements
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         int resId = R.anim.list_fall_down;
 
-        //animation for recycleview.
         LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(ArticleListActivity.this, resId);
         mRecyclerView.setLayoutAnimation(animation);
         getLoaderManager().initLoader(0, null, this);
@@ -88,7 +87,7 @@ public class ArticleListActivity extends AppCompatActivity implements
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
-        if(!isConnected) {
+        if (!isConnected) {
             CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorlayout);
             Snackbar.make(coordinatorLayout, getString(R.string.connectivity_msg), Snackbar.LENGTH_LONG).show();
         }
@@ -96,7 +95,7 @@ public class ArticleListActivity extends AppCompatActivity implements
     }
 
     private void refresh() {
-        if(checkConnectivity())
+        if (checkConnectivity())
             startService(new Intent(this, UpdaterService.class));
     }
 
@@ -173,10 +172,9 @@ public class ArticleListActivity extends AppCompatActivity implements
                 public void onClick(View view) {
                     startActivity(new Intent(Intent.ACTION_VIEW,
                             ItemsContractField.Items.buildItemUri(getItemId(vh.getAdapterPosition()))));
-                   //animation for list item.
-                    overridePendingTransition(R.anim.animation,R.anim.zoom_in);
+                    overridePendingTransition(R.anim.animation, R.anim.zoom_in);
                 }
-           });
+            });
             return vh;
         }
 

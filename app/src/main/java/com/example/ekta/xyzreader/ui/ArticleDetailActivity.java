@@ -48,14 +48,9 @@ public class ArticleDetailActivity extends AppCompatActivity
         }
         setContentView(R.layout.activity_article_detail);
 
-        getLoaderManager().initLoader(0, null, this);
-
-        mPagerAdapter = new ArticlePagerAdapter(getFragmentManager());
-        mviewPager = (ViewPager) findViewById(R.id.pager);
-        mviewPager.setAdapter(mPagerAdapter);
-        mviewPager.setPageMargin((int) TypedValue
-                .applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1, getResources().getDisplayMetrics()));
-        mviewPager.setPageMarginDrawable(new ColorDrawable(0x22000000));
+        initView();
+        setLoader();
+        setPager();
 
         mviewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
@@ -76,9 +71,7 @@ public class ArticleDetailActivity extends AppCompatActivity
             }
         });
 
-        mUpContainer = findViewById(R.id.container);
 
-        mUpButton = findViewById(R.id.action_up);
         mUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,6 +100,24 @@ public class ArticleDetailActivity extends AppCompatActivity
         }
     }
 
+    private void initView() {
+        mUpContainer = findViewById(R.id.container);
+        mUpButton = findViewById(R.id.action_up);
+        mviewPager = (ViewPager) findViewById(R.id.pager);
+    }
+
+    private void setPager() {
+        mPagerAdapter = new ArticlePagerAdapter(getFragmentManager());
+        mviewPager.setAdapter(mPagerAdapter);
+        mviewPager.setPageMargin((int) TypedValue
+                .applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1, getResources().getDisplayMetrics()));
+        mviewPager.setPageMarginDrawable(new ColorDrawable(0x22000000));
+    }
+
+    private void setLoader() {
+        getLoaderManager().initLoader(0, null, this);
+    }
+
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
         return ArticleLoaderReader.newAllArticlesInstance(this);
@@ -116,11 +127,8 @@ public class ArticleDetailActivity extends AppCompatActivity
     public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
         mCursor = cursor;
         mPagerAdapter.notifyDataSetChanged();
-
-        // Select the start ID
         if (mStartId > 0) {
             mCursor.moveToFirst();
-            // TODO: optimize
             while (!mCursor.isAfterLast()) {
                 if (mCursor.getLong(ArticleLoaderReader.QueryforData._ID) == mStartId) {
                     final int position = mCursor.getPosition();
@@ -169,7 +177,7 @@ public class ArticleDetailActivity extends AppCompatActivity
         @Override
         public Fragment getItem(int position) {
             mCursor.moveToPosition(position);
-            return ArticleDetailFragment.newInstance(mCursor.getLong(ArticleLoaderReader.QueryforData._ID),position);
+            return ArticleDetailFragment.newInstance(mCursor.getLong(ArticleLoaderReader.QueryforData._ID), position);
         }
 
         @Override

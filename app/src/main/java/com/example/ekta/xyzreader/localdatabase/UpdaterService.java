@@ -56,19 +56,19 @@ public class UpdaterService extends IntentService {
         try {
             JSONArray array = RemoteEndpointUtil.fetchJsonArray();
             if (array == null) {
-                throw new JSONException("Invalid parsed item array" );
+                throw new JSONException("Invalid parsed item array");
             }
 
             for (int i = 0; i < array.length(); i++) {
                 ContentValues values = new ContentValues();
                 JSONObject object = array.getJSONObject(i);
-                values.put(ItemsContractField.Items.SERVER_ID, object.getString("id" ));
-                values.put(ItemsContractField.Items.AUTHOR, object.getString("author" ));
-                values.put(ItemsContractField.Items.TITLE, object.getString("title" ));
-                values.put(ItemsContractField.Items.BODY, object.getString("body" ));
-                values.put(ItemsContractField.Items.THUMB_URL, object.getString("thumb" ));
-                values.put(ItemsContractField.Items.PHOTO_URL, object.getString("photo" ));
-                values.put(ItemsContractField.Items.ASPECT_RATIO, object.getString("aspect_ratio" ));
+                values.put(ItemsContractField.Items.SERVER_ID, object.getString("id"));
+                values.put(ItemsContractField.Items.AUTHOR, object.getString("author"));
+                values.put(ItemsContractField.Items.TITLE, object.getString("title"));
+                values.put(ItemsContractField.Items.BODY, object.getString("body"));
+                values.put(ItemsContractField.Items.THUMB_URL, object.getString("thumb"));
+                values.put(ItemsContractField.Items.PHOTO_URL, object.getString("photo"));
+                values.put(ItemsContractField.Items.ASPECT_RATIO, object.getString("aspect_ratio"));
                 values.put(ItemsContractField.Items.PUBLISHED_DATE, object.getString("published_date"));
                 cpo.add(ContentProviderOperation.newInsert(dirUri).withValues(values).build());
             }

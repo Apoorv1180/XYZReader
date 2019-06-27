@@ -9,5 +9,6 @@
     <string name="up">Up</string>
 
     <string name="connectivity_msg">Please check your Internet connection.</string>
+    <string name="transitionName">transitionName</string>
 
 </resources>

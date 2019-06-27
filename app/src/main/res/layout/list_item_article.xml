@@ -1,19 +1,19 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/tools"
+    android:id="@+id/card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="6dp"
     android:layout_marginLeft="6dp"
     android:layout_marginRight="6dp"
     android:layout_marginTop="6dp"
-    android:layout_marginBottom="6dp"
-    card_view:cardElevation="8dp"
-    app:cardCornerRadius="12dp"
-    card_view:cardUseCompatPadding="true"
     android:clickable="true"
     android:focusable="true"
-    android:id="@+id/card"
-    android:transitionName="@string/simple_activity_transition">
+    android:transitionName="@string/simple_activity_transition"
+    app:cardCornerRadius="12dp"
+    card_view:cardElevation="8dp"
+    card_view:cardUseCompatPadding="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -30,27 +30,27 @@
             style="@style/TextAppearance.AppCompat.Subhead"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="4dp"
-            android:paddingTop="16dp"
-            android:paddingRight="16dp"
-            android:paddingBottom="4dp"
-            android:textColor="@color/white"
+            android:layout_alignParentBottom="true"
             android:ellipsize="end"
             android:maxLines="4"
-            android:layout_alignParentBottom="true"/>
+            android:paddingBottom="4dp"
+            android:paddingLeft="4dp"
+            android:paddingRight="16dp"
+            android:paddingTop="16dp"
+            android:textColor="@color/white" />
 
         <!--<TextView-->
-            <!--android:id="@+id/article_subtitle"-->
-            <!--style="@style/TextAppearance.AppCompat.Body1"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:paddingLeft="4dp"-->
-            <!--android:paddingRight="16dp"-->
-            <!--android:paddingBottom="16dp"-->
-            <!--android:textColor="@color/grey"-->
-            <!--android:ellipsize="end"-->
-            <!--android:maxLines="2"-->
-            <!--android:layout_alignParentBottom="true"/>-->
+        <!--android:id="@+id/article_subtitle"-->
+        <!--style="@style/TextAppearance.AppCompat.Body1"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:paddingLeft="4dp"-->
+        <!--android:paddingRight="16dp"-->
+        <!--android:paddingBottom="16dp"-->
+        <!--android:textColor="@color/grey"-->
+        <!--android:ellipsize="end"-->
+        <!--android:maxLines="2"-->
+        <!--android:layout_alignParentBottom="true"/>-->
 
 
     </RelativeLayout>

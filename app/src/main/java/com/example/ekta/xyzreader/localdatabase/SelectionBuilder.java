@@ -17,15 +17,15 @@ public class SelectionBuilder {
 
     public SelectionBuilder reset() {
         mTable = null;
-		if (mProjectionMap != null) {
-			mProjectionMap.clear();
-		}
-		if (mSelection != null) {
-			mSelection.setLength(0);
-		}
-		if (mSelectionArgs != null) {
-			mSelectionArgs.clear();
-		}
+        if (mProjectionMap != null) {
+            mProjectionMap.clear();
+        }
+        if (mSelection != null) {
+            mSelection.setLength(0);
+        }
+        if (mSelectionArgs != null) {
+            mSelectionArgs.clear();
+        }
         return this;
     }
 
@@ -46,7 +46,7 @@ public class SelectionBuilder {
 
         mSelection.append("(").append(selection).append(")");
         if (selectionArgs != null) {
-        	ensureSelectionArgs();
+            ensureSelectionArgs();
             for (String arg : selectionArgs) {
                 mSelectionArgs.add(arg);
             }
@@ -67,31 +67,31 @@ public class SelectionBuilder {
     }
 
     private void ensureProjectionMap() {
-		if (mProjectionMap == null) {
-			mProjectionMap = new HashMap<String, String>();
-		}
+        if (mProjectionMap == null) {
+            mProjectionMap = new HashMap<String, String>();
+        }
     }
 
     private void ensureSelection(int lengthHint) {
-    	if (mSelection == null) {
-    		mSelection = new StringBuilder(lengthHint + 8);
-    	}
+        if (mSelection == null) {
+            mSelection = new StringBuilder(lengthHint + 8);
+        }
     }
 
     private void ensureSelectionArgs() {
-    	if (mSelectionArgs == null) {
-    		mSelectionArgs = new ArrayList<String>();
-    	}
+        if (mSelectionArgs == null) {
+            mSelectionArgs = new ArrayList<String>();
+        }
     }
 
     public SelectionBuilder mapToTable(String column, String table) {
-    	ensureProjectionMap();
+        ensureProjectionMap();
         mProjectionMap.put(column, table + "." + column);
         return this;
     }
 
     public SelectionBuilder map(String fromColumn, String toClause) {
-    	ensureProjectionMap();
+        ensureProjectionMap();
         mProjectionMap.put(fromColumn, toClause + " AS " + fromColumn);
         return this;
     }
@@ -102,11 +102,11 @@ public class SelectionBuilder {
      * @see #getSelectionArgs()
      */
     public String getSelection() {
-    	if (mSelection != null) {
+        if (mSelection != null) {
             return mSelection.toString();
-    	} else {
-    		return null;
-    	}
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -115,15 +115,15 @@ public class SelectionBuilder {
      * @see #getSelection()
      */
     public String[] getSelectionArgs() {
-    	if (mSelectionArgs != null) {
+        if (mSelectionArgs != null) {
             return mSelectionArgs.toArray(new String[mSelectionArgs.size()]);
-    	} else {
-    		return null;
-    	}
+        } else {
+            return null;
+        }
     }
 
     private void mapColumns(String[] columns) {
-    	if (mProjectionMap == null) return;
+        if (mProjectionMap == null) return;
         for (int i = 0; i < columns.length; i++) {
             final String target = mProjectionMap.get(columns[i]);
             if (target != null) {
@@ -144,6 +144,7 @@ public class SelectionBuilder {
     public Cursor query(SQLiteDatabase db, String[] columns, String orderBy) {
         return query(db, columns, null, null, orderBy, null);
     }
+
     public Cursor query(SQLiteDatabase db, String[] columns, String groupBy,
                         String having, String orderBy, String limit) {
         assertTable();
